@@ -1,0 +1,21 @@
+{
+  "name": "monitor-pba-higa-eva-peron",
+  "version": "1.0.0",
+  "description": "Monitor de servicios web del Ministerio de Salud PBA para el HIGA Eva Perón",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "monitor",
+    "pba",
+    "higa"
+  ],
+  "author": "Antigravity",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
