@@ -1,0 +1,421 @@
+/* Estilos del Monitor PBA HIGA Eva Perón */
+
+:root {
+  --bg-color: #000000;
+  --card-bg: #0a0a0c;
+  --card-border: #1a1a1e;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #8e9099;
+  --text-muted: #4e5058;
+
+  --color-online: #10b981;       /* Verde esmeralda suave */
+  --color-online-dim: rgba(16, 185, 129, 0.15);
+  --color-offline: #f43f5e;      /* Rojo carmín suave */
+  --color-offline-dim: rgba(244, 63, 94, 0.15);
+  --color-degraded: #f59e0b;     /* Ámbar */
+  --color-degraded-dim: rgba(245, 158, 11, 0.15);
+  --color-unknown: #71717a;      /* Gris */
+  --color-unknown-dim: rgba(113, 113, 122, 0.15);
+
+  --font-family: 'Encode Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --transition-speed: 0.25s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-weight: 400;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Contenedor principal */
+.container {
+  width: 100%;
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Encabezado */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 20px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* Indicador global de estado */
+.global-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--card-border);
+}
+
+.status-dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-unknown);
+  position: relative;
+}
+
+.status-dot-pulse.online { background-color: var(--color-online); }
+.status-dot-pulse.offline { background-color: var(--color-offline); }
+.status-dot-pulse.degraded { background-color: var(--color-degraded); }
+
+.status-dot-pulse.online::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--color-online);
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Lista de servicios */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Tarjeta de servicio */
+.service-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.service-card:hover {
+  border-color: #333338;
+}
+
+.service-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.service-name {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.service-description {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  font-weight: 300;
+}
+
+.service-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.response-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.status-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.status-badge.online {
+  color: var(--color-online);
+  background-color: var(--color-online-dim);
+}
+
+.status-badge.offline {
+  color: var(--color-offline);
+  background-color: var(--color-offline-dim);
+}
+
+.status-badge.degraded {
+  color: var(--color-degraded);
+  background-color: var(--color-degraded-dim);
+}
+
+.service-url {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 320px;
+  transition: color var(--transition-speed);
+}
+
+.service-url:hover {
+  color: var(--text-secondary);
+}
+
+/* Línea de tiempo de Uptime (Píldoras históricas) */
+.history-timeline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  height: 18px;
+  margin-top: 4px;
+}
+
+.timeline-pill {
+  width: 5px;
+  height: 14px;
+  border-radius: 2px;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.timeline-pill:hover {
+  transform: scaleY(1.3);
+  opacity: 1;
+}
+
+.timeline-pill.online { background-color: var(--color-online); opacity: 0.75; }
+.timeline-pill.offline { background-color: var(--color-offline); opacity: 0.75; }
+.timeline-pill.degraded { background-color: var(--color-degraded); opacity: 0.75; }
+.timeline-pill.unknown { background-color: rgba(255, 255, 255, 0.08); }
+
+/* Tooltips básicos del historial */
+.timeline-pill[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 22px;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: #121214;
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 4px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.timeline-pill:hover::before {
+  opacity: 1;
+}
+
+/* Detalles del estado actual */
+.service-details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.02);
+  padding-top: 12px;
+}
+
+.service-error-msg {
+  font-size: 0.7rem;
+  color: var(--color-offline);
+  opacity: 0.85;
+  font-weight: 300;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Pie de página */
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--card-border);
+  padding-top: 20px;
+}
+
+.sync-info {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 300;
+}
+
+.divider {
+  color: rgba(255, 255, 255, 0.1);
+}
+
+/* Botón Minimalista de Actualizar */
+.btn-refresh {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--card-border);
+  padding: 8px 16px;
+  font-family: var(--font-family);
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.btn-refresh:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: #333338;
+}
+
+.btn-refresh:active {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.btn-refresh:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.icon-refresh {
+  transition: transform 0.5s ease;
+}
+
+.btn-refresh:not(:disabled):hover .icon-refresh {
+  transform: rotate(180deg);
+}
+
+.btn-refresh.loading .icon-refresh {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Skeletons para la carga inicial */
+.skeleton-card {
+  height: 98px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.6; }
+}
+
+/* Adaptabilidad Móvil */
+@media (max-width: 600px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .global-status-badge {
+    align-self: flex-start;
+  }
+
+  .service-card-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service-meta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .service-details-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .history-timeline {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .app-footer {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .btn-refresh {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Monitor de estado de servicios web del Ministerio de Salud PBA para el HIGA Eva Perón.">
+  <title>Monitor PBA | HIGA Eva Perón</title>
+  <!-- Google Font: Encode Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <div class="brand">
+        <h1 class="title">Monitor PBA</h1>
+        <p class="subtitle">HIGA Eva Perón</p>
+      </div>
+      <div id="global-status" class="global-status-badge">
+        <span class="status-dot-pulse"></span>
+        <span class="status-text">Cargando...</span>
+      </div>
+    </header>
+
+    <main class="services-list" id="services-container">
+      <!-- Tarjetas de servicios serán insertadas dinámicamente -->
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </main>
+
+    <footer class="app-footer">
+      <div class="sync-info">
+        <span id="last-sync-time">Sincronizando estado...</span>
+        <span class="divider">•</span>
+        <span id="next-sync-countdown">Refrescando en 30s</span>
+      </div>
+      <div class="actions">
+        <button id="refresh-btn" class="btn-refresh" title="Actualizar estado ahora">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-refresh">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
+            <path d="M16 16h5v5"></path>
+          </svg>
+          Actualizar
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
